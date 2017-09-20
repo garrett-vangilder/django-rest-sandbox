@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render
@@ -45,3 +46,16 @@ class HelloApiView(APIView):
     def delete(self, request, pk=None):
         """Patch request updatses an object."""
         return Response({'method': 'delete'})
+
+
+class HelloViewSet(viewsets.ViewSet):
+    """Test API ViewSet."""
+
+    def list(self, request):
+        """Resturn a hello message"""
+        a_viewset = [
+            'Uses actions (list, create, retrieve, update, partial_update)',
+            'Automatically maps URLs using Routers',
+            'Provides more functionality with less code.',
+        ]
+        return Response({'message': 'Hello', 'a_viewset': a_viewset})
